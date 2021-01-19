@@ -1,11 +1,12 @@
 let lifespan = 1000;
-let bee;
+const POPSIZE = 500;
+let population;
 let count = 0;
 
 function setup() {
     createCanvas(1300, 1000);
     background(255);
-    bee = new Bee();
+    population = new Population();
 }
 
 function draw() {
@@ -16,7 +17,6 @@ function draw() {
     line(0, height, width, height);
     line(width, 0, width, height);
 
-    bee.update();
-    bee.show();
+    population.show();
     count++;
 }

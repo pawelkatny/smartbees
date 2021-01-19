@@ -20,9 +20,9 @@ class Bee {
         translate(this.pos.x, this.pos.y);
         rotate(this.vel.heading());
         ellipseMode(CENTER);
-        ellipse(0, 0, 10, 10);
-        ellipse(5, 5, 5, 5);
-        ellipse(-5, -5, 5, 5);
+        ellipse(0, 0, 5, 10);
+        ellipse(5, 0, 2, 5);
+        ellipse(-5, 0, 2, 5);
 
         pop();
     }
