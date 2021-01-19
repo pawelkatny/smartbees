@@ -10,6 +10,14 @@ class Population {
         }
     }
 
+    update() {
+        for(let i = 0; i < this.population.length; i++) {
+            this.population[i].pos = createVector(width/2, height);
+            this.population[i].vel = createVector();
+            this.population[i].acc = createVector();
+        }
+    }
+
     show() {
         for(let i = 0; i < this.population.length; i++) {
             this.population[i].update();

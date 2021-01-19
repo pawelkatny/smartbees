@@ -6,7 +6,7 @@ class DNA {
     }
 
     init() {
-        for (let i = 0; i < lifespan; i++) {
+        for (let i = 0; i < LIFESPAN; i++) {
             this.geneX[i] = p5.Vector.random2D();
             this.geneX[i].setMag(0.2)
         }

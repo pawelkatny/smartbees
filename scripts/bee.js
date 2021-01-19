@@ -16,14 +16,14 @@ class Bee {
     show() {
         push();
         noStroke();
-        fill(0);
         translate(this.pos.x, this.pos.y);
         rotate(this.vel.heading());
         ellipseMode(CENTER);
+        fill(255, 204, 0);
         ellipse(0, 0, 5, 10);
+        fill(0);
         ellipse(5, 0, 2, 5);
         ellipse(-5, 0, 2, 5);
-
         pop();
     }
 }
