@@ -1,5 +1,6 @@
-let lifespan = 200;
+let lifespan = 1000;
 let bee;
+let count = 0;
 
 function setup() {
     createCanvas(1300, 1000);
@@ -8,6 +9,7 @@ function setup() {
 }
 
 function draw() {
+    background(255);
     //draw border for canvas
     line(0, 0, 0, height);
     line(0, 0, width, 0);
@@ -16,4 +18,5 @@ function draw() {
 
     bee.update();
     bee.show();
+    count++;
 }

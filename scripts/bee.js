@@ -1,25 +1,29 @@
 class Bee {
-    geneX = [];
     constructor() {
-        this.pos = createVector(width/2, height/2);
+        this.pos = createVector(width/2, height);
         this.vel = createVector();
-        // this.acc = createVector();
-        this.init();
-    }
-
-    init() {
-        for (let i = 0; i < lifespan; i++) {
-            this.geneX[i] = p5.Vector.random2D();
-        }
+        this.acc = createVector();
+        this.dna = new DNA();
     }
 
     update() {
-        this.acc.add(this.geneX[lifespan]);
-        this.vel.add(acc);
-        this.pos.add(vel);
+        this.acc.add(this.dna.geneX[count]);
+        this.vel.add(this.acc);
+        this.pos.add(this.vel);
+        this.acc.mult(0)
     }
 
     show() {
-        point(this.pos.x, this.pos.y, 10, 10)
+        push();
+        noStroke();
+        fill(0);
+        translate(this.pos.x, this.pos.y);
+        rotate(this.vel.heading());
+        ellipseMode(CENTER);
+        ellipse(0, 0, 10, 10);
+        ellipse(5, 5, 5, 5);
+        ellipse(-5, -5, 5, 5);
+
+        pop();
     }
 }
