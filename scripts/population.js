@@ -5,7 +5,7 @@ class Population {
     }
 
     init() {
-        for(let i = 0; i < POPSIZE; i++) {
+        for(let i = 0; i < DATA.POPSIZE; i++) {
             this.population.push(new Bee());
         }
     }

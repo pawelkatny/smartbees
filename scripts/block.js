@@ -14,5 +14,6 @@ class Block {
         fill(150, 45, 56, 200);
         stroke(100, 25, 30);
         rect(this.pos.x, this.pos.y, this.w, this.h);
+        pop();
     }
 }
