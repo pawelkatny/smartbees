@@ -1,6 +1,6 @@
 class DATA {
     static LIFESPAN = 500;
-    static POPSIZE = 20;
+    static POPSIZE = 200;
     static CANVAS = {
         w: 1300,
         h: 1000
@@ -142,7 +142,9 @@ class DATA {
         if (this.count === this.LIFESPAN) {
             this.count = 0;
             this.POPULATION.evaluate();
-            this.POPULATION.update();
+            this.POPULATION.normalizeFitness();
+            this.POPULATION.createMatingPool();
+            this.POPULATION.selection();
         }
         this.count = 1;
     }

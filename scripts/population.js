@@ -19,9 +19,47 @@ class Population {
     }
 
     evaluate() {
+        let maxFitness = 0;
         this.population.forEach(bee => {
             bee.calcFitness();
         })
+
+        this.population.forEach(bee => {
+            if (maxFitness < bee.fitness) {
+                maxFitness = bee.fitness;
+            }
+        })
+        this.maxFitness = maxFitness;
+    }
+
+    normalizeFitness() {
+        this.population.forEach(bee => {
+            bee.fitness /= this.maxFitness;
+        })
+    }
+
+    createMatingPool() {
+        this.matingPool = [];
+        this.population.forEach(bee => {
+            let maxBeePool = bee.fitness * 100;
+
+            for(let i = 0; i < maxBeePool; i++) {
+                this.matingPool.push(bee);
+            }
+        })
+    }
+
+    selection() {
+        let newPopulation = [];
+        for (let i = 0; i < DATA.POPSIZE; i++) {
+            let child;
+            let beeA = random(this.matingPool).dna;
+            let beeB = random(this.matingPool).dna;
+            child = beeA.crossover(beeB);   
+            newPopulation.push(new Bee(child));
+        }
+        console.log(newPopulation);
+        this.population = newPopulation;
     }
 
     show() {

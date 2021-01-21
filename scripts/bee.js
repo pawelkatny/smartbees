@@ -1,9 +1,13 @@
 class Bee {
-    constructor() {
+    constructor(newDNA) {
         this.pos = createVector(width / 2, height);
         this.vel = createVector();
         this.acc = createVector();
-        this.dna = new DNA();
+        if (newDNA) {
+            this.dna = newDNA;
+        } else {
+            this.dna = new DNA();
+        }
         this.crashed = false;
         this.completed = false;
         this.flewAway = false;
