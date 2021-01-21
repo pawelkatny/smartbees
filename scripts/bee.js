@@ -9,6 +9,30 @@ class Bee {
         this.flewAway = false;
     }
 
+    calcFitness() {
+        let distance = [],
+            minDist, index;
+        minDist = DATA.FLOWERS.map(flower => {
+            let d = dist(this.pos.x, this.pos.y, flower.pos.x, flower.pos.y);
+            distance.push(d);
+            return d;
+        }).reduce((a, b) => {
+            if (a < b) return a;
+            else return b;
+        })
+        index = distance.indexOf(minDist);
+        this.fitness = map(minDist, 0, DATA.CANVAS.w, DATA.CANVAS.w, 0);
+
+        if (this.completed) {
+            this.fitness *= flowers[index].fitness;
+        }
+
+        if (this.crashed || this.flewAway) {
+            this.fitness /= 10;
+        }
+
+    }
+
     update() {
         //check if bee crashed into block
         this.crashed = DATA.isCrashed(this.pos);

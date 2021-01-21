@@ -1,6 +1,6 @@
 class DATA {
     static LIFESPAN = 500;
-    static POPSIZE = 2200;
+    static POPSIZE = 20;
     static CANVAS = {
         w: 1300,
         h: 1000
@@ -15,28 +15,31 @@ class DATA {
     static F1 = {
         color: [204, 51, 255, 100],
         size: 20,
-        position: {
+        pos: {
             x: 100,
             y: 100
-        }
+        },
+        fitness: 10
     }
 
     static F2 = {
         color: [0, 178, 255, 100],
         size: 30,
-        position: {
+        pos: {
             x: 700,
             y: 150
-        }
+        },
+        fitness: 5
     }
 
     static F3 = {
         color: [50, 50, 255, 100],
         size: 15,
-        position: {
+        pos: {
             x: 1100,
             y: 70
-        }
+        }, 
+        fitness: 15
     }
 
     //blocks data
@@ -138,6 +141,7 @@ class DATA {
     static update() {
         if (this.count === this.LIFESPAN) {
             this.count = 0;
+            this.POPULATION.evaluate();
             this.POPULATION.update();
         }
         this.count = 1;

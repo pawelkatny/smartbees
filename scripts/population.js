@@ -18,6 +18,12 @@ class Population {
         }
     }
 
+    evaluate() {
+        this.population.forEach(bee => {
+            bee.calcFitness();
+        })
+    }
+
     show() {
         for(let i = 0; i < this.population.length; i++) {
             this.population[i].update();
