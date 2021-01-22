@@ -1,6 +1,5 @@
 class Block {
     constructor(data) {
-        console.log(data)
         this.pos = {
             x: data.x,
             y: data.y

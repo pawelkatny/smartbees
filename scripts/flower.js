@@ -2,7 +2,7 @@ class Flower {
     constructor(data) {
         this.color = data.color;
         this.size = data.size;
-        this.pos = data.pos;
+        this.pos = createVector(data.pos.x, data.pos.y);
     }
 
     draw() {

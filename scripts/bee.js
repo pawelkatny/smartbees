@@ -9,26 +9,16 @@ class Bee {
             this.dna = new DNA();
         }
         this.crashed = false;
-        this.completed = false;
+        this.reachedFlower = false;
         this.flewAway = false;
     }
 
     calcFitness() {
-        let distance = [],
-            minDist, index;
-        minDist = DATA.FLOWERS.map(flower => {
-            let d = dist(this.pos.x, this.pos.y, flower.pos.x, flower.pos.y);
-            distance.push(d);
-            return d;
-        }).reduce((a, b) => {
-            if (a < b) return a;
-            else return b;
-        })
-        index = distance.indexOf(minDist);
+        let { minDist, index } = DATA.calcDistance(this.pos);
         this.fitness = map(minDist, 0, DATA.CANVAS.w, DATA.CANVAS.w, 0);
 
-        if (this.completed) {
-            this.fitness *= flowers[index].fitness;
+        if (this.reachedFlower) {
+            this.fitness *= (DATA.FLOWERS[index].fitness * 5);
         }
 
         if (this.crashed || this.flewAway) {
@@ -42,8 +32,16 @@ class Bee {
         this.crashed = DATA.isCrashed(this.pos);
         //check if bee flew away out of canvas
         this.flewAway = DATA.flewAway(this.pos);
+        //check if bee reached any flower
+        let status = DATA.reachedFlower(this.pos);
+        this.reachedFlower = status.reachedFlower;
 
-        if (!this.completed && !this.crashed && !this.flewAway) {
+        if (this.reachedFlower) {
+            this.pos = DATA.FLOWERS[status.index].pos;
+        }
+
+
+        if (!this.reachedFlower && !this.crashed && !this.flewAway) {
             this.acc.add(this.dna.geneX[DATA.count]);
             this.vel.add(this.acc);
             this.pos.add(this.vel);

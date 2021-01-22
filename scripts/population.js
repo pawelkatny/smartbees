@@ -58,7 +58,6 @@ class Population {
             child = beeA.crossover(beeB);   
             newPopulation.push(new Bee(child));
         }
-        console.log(newPopulation);
         this.population = newPopulation;
     }
 

@@ -1,6 +1,6 @@
 class DATA {
-    static LIFESPAN = 500;
-    static POPSIZE = 200;
+    static LIFESPAN = 700;
+    static POPSIZE = 500;
     static CANVAS = {
         w: 1300,
         h: 1000
@@ -38,7 +38,7 @@ class DATA {
         pos: {
             x: 1100,
             y: 70
-        }, 
+        },
         fitness: 15
     }
 
@@ -49,7 +49,7 @@ class DATA {
         w: 300,
         h: 50
     }
-    
+
     static B2 = {
         x: 100,
         y: 250,
@@ -77,6 +77,25 @@ class DATA {
         }
     }
 
+    static calcDistance(pos) {
+        let distance = [],
+            minDist, index;
+        minDist = this.FLOWERS.map(flower => {
+            let d = dist(pos.x, pos.y, flower.pos.x, flower.pos.y);
+            distance.push(d);
+            return d;
+        }).reduce((a, b) => {
+            if (a < b) return a;
+            else return b;
+        })
+        index = distance.indexOf(minDist);
+
+        return {
+            minDist,
+            index
+        };
+    }
+
     //function to check if bee crashed into block
     static isCrashed(pos) {
         return this.BLOCKS.some(block => {
@@ -90,6 +109,23 @@ class DATA {
         } else {
             return false;
         }
+    }
+
+    static reachedFlower(pos) {
+        let reachedFlower;
+        let {
+            minDist,
+            index
+        } = this.calcDistance(pos);
+        if (minDist < this.FLOWERS[index].size * 2) {
+            reachedFlower = true;
+        } else {
+            reachedFlower = false;
+        }
+        return {
+            reachedFlower,
+            index
+        };
     }
 
     static init() {
@@ -122,7 +158,7 @@ class DATA {
 
         //draw beehive
         fill(255, 204, 0);
-        rect((width/2 - 25), (height - 50), 50, 50);
+        rect((width / 2 - 25), (height - 50), 50, 50);
 
         //draw flowers
         this.FLOWERS.forEach(flower => {
