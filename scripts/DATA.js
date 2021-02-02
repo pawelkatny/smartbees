@@ -1,6 +1,8 @@
 class DATA {
-    static LIFESPAN = 700;
-    static POPSIZE = 500;
+    static LIFESPAN = 500;
+    static POPSIZE = 200;
+    static MUTATION = 0.005;
+    static MAGNITUDE = 0.4;
     static CANVAS = {
         w: 1300,
         h: 1000
@@ -58,7 +60,7 @@ class DATA {
     }
 
     static B3 = {
-        x: 1000,
+        x: 900,
         y: 150,
         w: 200,
         h: 10
@@ -90,6 +92,7 @@ class DATA {
         })
         index = distance.indexOf(minDist);
 
+    
         return {
             minDist,
             index

@@ -18,7 +18,7 @@ class Bee {
         this.fitness = map(minDist, 0, DATA.CANVAS.w, DATA.CANVAS.w, 0);
 
         if (this.reachedFlower) {
-            this.fitness *= (DATA.FLOWERS[index].fitness * 5);
+            this.fitness *= (DATA.FLOWERS[index].fitness * 100);
         }
 
         if (this.crashed || this.flewAway) {

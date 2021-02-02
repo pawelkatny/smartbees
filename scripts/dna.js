@@ -1,9 +1,9 @@
 class DNA {
     geneX = [];
 
-    constructor(DNA) {
-        if (DNA) {
-            this.geneX = DNA;
+    constructor(dna) {
+        if (dna) {
+            this.geneX = dna;
         } else {
             this.init();
         }
@@ -12,7 +12,7 @@ class DNA {
     init() {
         for (let i = 0; i < DATA.LIFESPAN; i++) {
             this.geneX[i] = p5.Vector.random2D();
-            this.geneX[i].setMag(0.2)
+            this.geneX[i].setMag(DATA.MAGNITUDE)
         }
     }
 
@@ -29,5 +29,14 @@ class DNA {
             }
         }
         return new DNA(newDNA);
+    }
+
+    mutation() {
+        for (let i = 0; i < this.geneX.length; i++) {
+            if (random(1) < DATA.MUTATION) {
+                this.geneX[i] = p5.Vector.random2D();
+                this.geneX[i].setMag(DATA.MAGNITUDE);
+            }
+        }
     }
 }

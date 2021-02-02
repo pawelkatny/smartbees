@@ -20,27 +20,30 @@ class Population {
 
     evaluate() {
         let maxFitness = 0;
-        this.population.forEach(bee => {
-            bee.calcFitness();
-        })
+        for (let i = 0; i < this.population.length; i++) {
+            this.population[i].calcFitness();
+        }
 
         this.population.forEach(bee => {
+            console.log(bee.fitness)
             if (maxFitness < bee.fitness) {
                 maxFitness = bee.fitness;
             }
         })
         this.maxFitness = maxFitness;
+        
     }
 
     normalizeFitness() {
-        this.population.forEach(bee => {
-            bee.fitness /= this.maxFitness;
-        })
+        for (let i = 0; i < this.population.length; i++) {
+            this.population[i].fitness /= this.maxFitness;
+        }
     }
 
     createMatingPool() {
         this.matingPool = [];
         this.population.forEach(bee => {
+            
             let maxBeePool = bee.fitness * 100;
 
             for(let i = 0; i < maxBeePool; i++) {
@@ -55,7 +58,8 @@ class Population {
             let child;
             let beeA = random(this.matingPool).dna;
             let beeB = random(this.matingPool).dna;
-            child = beeA.crossover(beeB);   
+            child = beeA.crossover(beeB);
+            child.mutation();   
             newPopulation.push(new Bee(child));
         }
         this.population = newPopulation;
