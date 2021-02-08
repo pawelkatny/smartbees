@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./styles/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js" defer></script>
+    <script src="./scripts/UI.js"></script> 
     <script src="./scripts/DATA.js"></script>
     <script src="./scripts/dna.js"></script>
     <script src="./scripts/bee.js"></script>
@@ -14,6 +16,33 @@
     <script src="./scripts/sketch.js"></script>
 </head>
 <body>
-    
+    <div id="container">
+    </div>
+    <div id="menu">
+        <div class="menu-left">
+            <p>Lifespan: <span id="lifespan"></span></p>
+            <p>Popultion: <span id="population"></span></p>
+        </div>
+        <div class="menu-mid">
+            <div class="menu-mid-tab">
+                <p>Blocks:</p>
+                <input type="checkbox" id="block2" name="block2">
+                <label for="block2">block #2</label>
+                <input type="checkbox" id="block3" name="block3">
+                <label for="block3">block #3</label>
+            </div>
+            <div class="menu-mid-tab">
+                <p>Flowers:</p>
+                <input type="checkbox" id="flower2" name="flower2">
+                <label for="flower2">flower #2</label>
+                <input type="checkbox" id="flower3" name="flower3">
+                <label for="flower3">flower #3</label>
+            </div>
+        </div>
+        <div class="menu-right">
+            <button id="start">Start/Pause</button>
+            <button id="reset">Reset</button>
+        </div>
+    </div>
 </body>
 </html>

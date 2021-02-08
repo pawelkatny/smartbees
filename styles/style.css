@@ -1,0 +1,19 @@
+.menu-left, .menu-mid, .menu-right {
+    display: inline-block;
+    margin: auto;
+    width: 30%;
+    height: auto;
+    vertical-align: top;
+}
+
+/* #block2 {
+    display: inline;
+} */
+
+button {
+    display: block;
+    margin-top: 1rem;
+    height: 30px;
+    width: 150px;
+    font-size: 1rem;
+}

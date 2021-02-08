@@ -134,7 +134,8 @@ class DATA {
     }
 
     static init() {
-        createCanvas(this.CANVAS.w, this.CANVAS.h);
+        const canvas = createCanvas(this.CANVAS.w, this.CANVAS.h);
+        canvas.parent(UI.DOM.container);
         background(255);
         
         //create new flowers and blocks based on the avaible variables
