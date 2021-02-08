@@ -7,6 +7,8 @@ class DATA {
         w: 1300,
         h: 1000
     }
+    static STOP = false;
+
     static POPULATION;
     static _COUNT;
 
@@ -134,6 +136,7 @@ class DATA {
     static init() {
         createCanvas(this.CANVAS.w, this.CANVAS.h);
         background(255);
+        
         //create new flowers and blocks based on the avaible variables
         //looping through DATA object keys and looking foir specific var names
         Object.keys(DATA).forEach(key => {
@@ -152,7 +155,7 @@ class DATA {
 
     static show() {
         background(255);
-
+        this.STOP ? noLoop() : loop();
         //draw border for canvas
         line(0, 0, 0, height);
         line(0, 0, width, 0);
@@ -175,6 +178,10 @@ class DATA {
 
         //draw poopulation of bees
         this.POPULATION.show();
+    }
+
+    static pause() {
+        this.STOP = !this.STOP;
     }
 
     static update() {
