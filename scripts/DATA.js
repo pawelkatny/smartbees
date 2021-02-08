@@ -10,7 +10,8 @@ class DATA {
     static STOP = false;
 
     static POPULATION;
-    static _COUNT;
+    static _LIFESPAN_COUNT;
+    static _POPULATION_COUNT;
 
     static BLOCKS = [];
     static FLOWERS = [];
@@ -70,14 +71,26 @@ class DATA {
 
     //getter and setter for lifespan counter
     static get count() {
-        return this._COUNT;
+        return this._LIFESPAN_COUNT;
     }
 
     static set count(val) {
-        if (isNaN(this._COUNT) || val === 0) {
-            this._COUNT = 0;
+        if (isNaN(this._LIFESPAN_COUNT) || val === 0) {
+            this._LIFESPAN_COUNT = 0;
         } else {
-            this._COUNT += val;
+            this._LIFESPAN_COUNT += val;
+        }
+    }
+
+    static get population() {
+        return this._POPULATION_COUNT;
+    }
+
+    static set population(val) {
+        if (isNaN(this._LIFESPAN_COUNT) || val === 0) {
+            this._POPULATION_COUNT = 0;
+        } else {
+            this._POPULATION_COUNT += 1;
         }
     }
 
@@ -152,11 +165,11 @@ class DATA {
 
         //create new population
         this.POPULATION = new Population();
+        this.population = 0;
     }
 
     static show() {
         background(255);
-        this.STOP ? noLoop() : loop();
         //draw border for canvas
         line(0, 0, 0, height);
         line(0, 0, width, 0);
@@ -182,12 +195,21 @@ class DATA {
     }
 
     static pause() {
+        console.log('test')
         this.STOP = !this.STOP;
+        console.log(this.STOP)
     }
 
+    static reset() {
+        this.POPULATION = new Population();
+        this.population = 0;
+        this.count = 0;
+    }
+ 
     static update() {
         if (this.count === this.LIFESPAN) {
             this.count = 0;
+            this.population = 1;
             this.POPULATION.evaluate();
             this.POPULATION.normalizeFitness();
             this.POPULATION.createMatingPool();

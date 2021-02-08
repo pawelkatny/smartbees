@@ -2,15 +2,16 @@ let lspanCount, fitCount;
 
 function setup() {
     DATA.init();
+    UI.init();
 }
 
 function draw() {
     if (DATA.STOP) return;
     DATA.show();
     DATA.update();
+    UI.update();
 }
 
 function mousePressed() {
-    DATA.STOP = !DATA.STOP;
-    DATA.STOP ? noLoop() : loop();
+    // DATA.STOP ? noLoop() : loop();
 }

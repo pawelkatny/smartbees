@@ -25,7 +25,6 @@ class Population {
         }
 
         this.population.forEach(bee => {
-            console.log(bee.fitness)
             if (maxFitness < bee.fitness) {
                 maxFitness = bee.fitness;
             }
