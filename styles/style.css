@@ -1,3 +1,7 @@
+#menu {
+    max-width: 1300px;
+}
+
 .menu-left, .menu-mid, .menu-right {
     display: inline-block;
     margin: auto;

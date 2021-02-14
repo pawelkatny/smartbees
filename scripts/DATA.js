@@ -94,6 +94,16 @@ class DATA {
         }
     }
 
+    static get mutation() {
+        return this.MUTATION;
+    }
+
+    static set mutation(val) {
+        if(!isNaN(val)) {
+            this.MUTATION = val;
+        }
+    }
+
     static calcDistance(pos) {
         let distance = [],
             minDist, index;
@@ -144,6 +154,10 @@ class DATA {
             reachedFlower,
             index
         };
+    }
+
+    static setMutation(val) {
+        this.mutation = val;
     }
 
     static init() {
