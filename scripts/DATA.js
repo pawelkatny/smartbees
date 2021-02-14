@@ -18,23 +18,25 @@ class DATA {
 
     //flowers data
     static F1 = {
-        color: [204, 51, 255, 100],
-        size: 20,
-        pos: {
-            x: 100,
-            y: 100
-        },
-        fitness: 10
-    }
-
-    static F2 = {
         color: [0, 178, 255, 100],
         size: 30,
         pos: {
             x: 700,
             y: 150
         },
-        fitness: 5
+        fitness: 5,
+        show: true
+    }
+
+    static F2 = {
+        color: [204, 51, 255, 100],
+        size: 20,
+        pos: {
+            x: 100,
+            y: 100
+        },
+        fitness: 10,
+        show: true
     }
 
     static F3 = {
@@ -44,7 +46,8 @@ class DATA {
             x: 1100,
             y: 70
         },
-        fitness: 15
+        fitness: 15,
+        show: true
     }
 
     //blocks data
@@ -52,21 +55,24 @@ class DATA {
         x: 500,
         y: 500,
         w: 300,
-        h: 50
+        h: 50,
+        show: true
     }
 
     static B2 = {
         x: 100,
         y: 250,
         w: 200,
-        h: 20
+        h: 20,
+        show: true
     }
 
     static B3 = {
         x: 900,
         y: 150,
         w: 200,
-        h: 10
+        h: 10,
+        show: true
     }
 
     //getter and setter for lifespan counter
@@ -108,15 +114,20 @@ class DATA {
         let distance = [],
             minDist, index;
         minDist = this.FLOWERS.map(flower => {
-            let d = dist(pos.x, pos.y, flower.pos.x, flower.pos.y);
-            distance.push(d);
-            return d;
+            if (flower.show) {
+                let d = dist(pos.x, pos.y, flower.pos.x, flower.pos.y);
+                distance.push(d);
+                return d;
+            }
         }).reduce((a, b) => {
-            if (a < b) return a;
-            else return b;
+            if (b !== undefined) {
+                if (a < b) return a;
+                else return b;
+            }
+            return a;
         })
-        index = distance.indexOf(minDist);
 
+        index = distance.indexOf(minDist);
     
         return {
             minDist,
@@ -126,8 +137,10 @@ class DATA {
 
     //function to check if bee crashed into block
     static isCrashed(pos) {
-        return this.BLOCKS.some(block => {
-            return (pos.x > block.pos.x && pos.x < block.pos.x + block.w && pos.y > block.pos.y && pos.y < block.pos.y + block.h)
+        return this.BLOCKS.some(block => { 
+            if (block.show) {
+                return (pos.x > block.pos.x && pos.x < block.pos.x + block.w && pos.y > block.pos.y && pos.y < block.pos.y + block.h);
+            }
         })
     }
     //checking is bee flew away out of canvas 
@@ -196,12 +209,16 @@ class DATA {
 
         //draw flowers
         this.FLOWERS.forEach(flower => {
-            flower.draw();
+            if (flower.show) {
+                flower.draw();
+            }
         })
 
         //draw blocks
         this.BLOCKS.forEach(block => {
-            block.draw();
+            if (block.show) {
+                block.draw();
+            }
         })
 
         //draw poopulation of bees
@@ -209,9 +226,7 @@ class DATA {
     }
 
     static pause() {
-        console.log('test')
         this.STOP = !this.STOP;
-        console.log(this.STOP)
     }
 
     static reset() {

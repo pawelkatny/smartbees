@@ -3,6 +3,7 @@ class Flower {
         this.color = data.color;
         this.size = data.size;
         this.pos = createVector(data.pos.x, data.pos.y);
+        this.show = data.show;
     }
 
     draw() {

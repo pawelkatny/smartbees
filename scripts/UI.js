@@ -3,10 +3,10 @@ class UI {
         container: 'container',
         lifespan: 'lifespan',
         population: 'population',
-        block2: 'block2',
-        block3: 'block3',
-        flower2: 'flower2',
-        flower3: 'flower3',
+        block2: 'B2',
+        block3: 'B3',
+        flower2: 'F2',
+        flower3: 'F3',
         pause: 'pause',
         reset: 'reset',
         mutation: 'mutation',
@@ -23,10 +23,10 @@ class UI {
         const mutation = document.getElementById(this.DOM.mutation);
         const mutLabel = document.getElementById(this.DOM.mutLabel);
 
-        block2.checked = 'checked';
-        block3.checked = 'checked';
-        flower2.checked = 'checked';
-        flower3.checked = 'checked';
+        block2.checked = true;
+        block3.checked = true;
+        flower2.checked = true;
+        flower3.checked = true;
         mutation.defaultValue = DATA.mutation;
         mutLabel.innerText = `${(DATA.mutation * 100).toFixed(2)} %`;
 
@@ -40,7 +40,38 @@ class UI {
         mutation.addEventListener('change', () => {
             DATA.setMutation(mutation.value);
             mutLabel.innerText = `${(DATA.mutation * 100).toFixed(2)} %`;
-            console.log(DATA.mutation)
+        })
+
+        block2.addEventListener('click', () => {
+            if (!block2.checked) {
+                DATA.BLOCKS[1].show = false;
+            } else {
+                DATA.BLOCKS[1].show = true;
+            }
+        })
+
+        block3.addEventListener('click', () => {
+            if (!block3.checked) {
+                DATA.BLOCKS[2].show = false;
+            } else {
+                DATA.BLOCKS[2].show = true;
+            }
+        })
+
+        flower2.addEventListener('click', () => {
+            if(!flower2.checked) {
+                DATA.FLOWERS[1].show = false;
+            } else {
+                DATA.FLOWERS[1].show = true;
+            }
+        })
+
+        flower3.addEventListener('click', () => {
+            if(!flower3.checked) {
+                DATA.FLOWERS[2].show = false;
+            } else {
+                DATA.FLOWERS[2].show = true;
+            }
         })
 
     }
