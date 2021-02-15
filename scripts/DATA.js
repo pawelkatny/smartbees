@@ -110,6 +110,16 @@ class DATA {
         }
     }
 
+    static get popSize() {
+        return this.POPSIZE;
+    }
+
+    static set popSize(val) {
+        if(!isNaN(val)) {
+            this.POPSIZE = val;
+        }
+    }
+
     static calcDistance(pos) {
         let distance = [],
             minDist, index;
@@ -167,10 +177,6 @@ class DATA {
             reachedFlower,
             index
         };
-    }
-
-    static setMutation(val) {
-        this.mutation = val;
     }
 
     static init() {

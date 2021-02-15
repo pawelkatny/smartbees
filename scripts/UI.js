@@ -3,6 +3,8 @@ class UI {
         container: 'container',
         lifespan: 'lifespan',
         population: 'population',
+        popSize: 'popSize',
+        popSizeLabel: 'popSizeLabel',
         block2: 'B2',
         block3: 'B3',
         flower2: 'F2',
@@ -22,7 +24,11 @@ class UI {
         const flower3 = document.getElementById(this.DOM.flower3);
         const mutation = document.getElementById(this.DOM.mutation);
         const mutLabel = document.getElementById(this.DOM.mutLabel);
+        const popSize = document.getElementById(this.DOM.popSize);
+        const popSizeLabel = document.getElementById(this.DOM.popSizeLabel);
 
+        popSize.defaultValue = DATA.popSize;
+        popSizeLabel.innerText = DATA.popSize;
         block2.checked = true;
         block3.checked = true;
         flower2.checked = true;
@@ -32,15 +38,21 @@ class UI {
 
         pause.addEventListener('click', () => {
             DATA.pause();
-        });
+        })
+
         reset.addEventListener('click', () => {
             DATA.reset();
-        });
-
-        mutation.addEventListener('change', () => {
-            DATA.setMutation(mutation.value);
-            mutLabel.innerText = `${(DATA.mutation * 100).toFixed(2)} %`;
         })
+
+        popSize.oninput = () => {
+            DATA.popSize = popSize.value;
+            popSizeLabel.innerText = popSize.value;
+        }
+
+        mutation.oninput = () => {
+            DATA.mutation = mutation.value;
+            mutLabel.innerText = `${(DATA.mutation * 100).toFixed(2)} %`;
+        }
 
         block2.addEventListener('click', () => {
             if (!block2.checked) {
