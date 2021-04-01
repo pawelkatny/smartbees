@@ -1,4 +1,4 @@
-# smartbees
+# SmartBees
 > Simple implementation of genetic algorithm in JavaScript using p5.js library.
 
 ## General info
